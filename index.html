@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gesture Particles</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.164.1/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.164.1/examples/jsm/"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="panel">
+        <div class="brand">
+          <div class="brand-mark"></div>
+          <div>
+            <h1>Gesture Particles</h1>
+            <p>Three.js interactive particle sculptures</p>
+          </div>
+        </div>
+
+        <section class="card">
+          <h2>Template</h2>
+          <div id="templateGrid" class="template-grid"></div>
+        </section>
+
+        <section class="card">
+          <h2>Color</h2>
+          <label class="color-row">
+            <span>Particle color</span>
+            <input id="colorPicker" type="color" value="#8be9fd" />
+          </label>
+        </section>
+
+        <section class="card status-card">
+          <div class="status-head">
+            <h2>Gesture</h2>
+            <span id="camStatus" class="badge badge-warn">Camera idle</span>
+          </div>
+          <p id="gestureReadout">Open the camera and bring both hands into view.</p>
+          <div class="gesture-bars">
+            <div class="gesture-bar">
+              <span>Pinch</span>
+              <div class="bar-track"><div id="pinchFill" class="bar-fill"></div></div>
+            </div>
+            <div class="gesture-bar">
+              <span>Open</span>
+              <div class="bar-track"><div id="openFill" class="bar-fill"></div></div>
+            </div>
+          </div>
+          <button id="calibrateButton" class="secondary-btn" type="button">Calibrate base</button>
+          <button id="cameraButton" class="primary-btn">Enable camera</button>
+        </section>
+
+        <section class="card help-card">
+          <h2>Controls</h2>
+          <ul>
+            <li>Right hand controls zoom around the neutral base.</li>
+            <li>Open the hand to zoom out from the base.</li>
+            <li>Left hand pinch thumb and index, then move to rotate.</li>
+          </ul>
+        </section>
+      </aside>
+
+      <main class="stage">
+        <canvas id="sceneCanvas"></canvas>
+        <div class="overlay">
+          <div class="overlay-pill">Real-time hands interaction</div>
+          <div class="overlay-pill subtle" id="templateLabel">Heart bloom</div>
+          <div class="overlay-pill subtle" id="handsStatus">Hands: idle</div>
+          <div class="overlay-pill subtle" id="gestureMode">Gesture: waiting</div>
+          <div class="overlay-pill subtle" id="handAssign">Assign: waiting</div>
+        </div>
+        <div class="camera-preview">
+          <video id="cameraPreview" autoplay playsinline muted></video>
+          <canvas id="handOverlay"></canvas>
+          <div class="camera-preview-label">Camera feed</div>
+        </div>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
